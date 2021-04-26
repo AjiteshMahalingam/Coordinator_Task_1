@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mayathoorikai</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="gallery_styles.css">
+    <link rel="shortcut icon" href="images/m_logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <img src="Images/m_logo.jpg">
+      </div>
+      <div class="nav-bar">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Works</a></li>
+          <li><a href="#">Artist</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#" class="fa fa-shopping-cart" style="padding-top: 1.3em;"><span></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="container">
+        <input type="radio" name="images" id="i1" checked>
+        <input type="radio" name="images" id="i2">
+        <input type="radio" name="images" id="i3">
+        <div class="slide-img" id="one">
+          <img src="Images/g1.PNG">
+          <label for="i3" class="pre"></label>
+          <label for="i2" class="nxt"></label>
+        </div>
+        <div class="slide-img" id="two">
+          <img src="Images/g2.jpg">
+          <label for="i1" class="pre"></label>
+          <label for="i3" class="nxt"></label>
+        </div>
+        <div class="slide-img" id="three">
+          <img src="Images/g3.jpg">
+          <label for="i2" class="pre"></label>
+          <label for="i1" class="nxt"></label>
+        </div>
+        <div class="slide-nav">
+          <label class="dots" id="dot1" for="i1"></label>
+          <label class="dots" id="dot2" for="i2"></label>
+          <label class="dots" id="dot3" for="i3"></label>
+        </div>
+      </div>
+      
+    </div>
+    <div class="footer">
+      <div class="i-bar">
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-etsy"></a>
+        <a href="#" class="fa fa-envelope"></a>
+      </div>
+      <p class="credit">© MAYATHOORIKAI</p>
+    </div>
+  </body>
+</html>
