@@ -1,15 +1,24 @@
 <?php 
     include('db_connect.php');
+    
     $id = $title = $qnty = $price = "";
     $total = 0;
     $i = 0;
+    
     date_default_timezone_set('Asia/Kolkata');
     $date = date('d-m-Y');
     $time = date('h:i:s a');
+    
     $items = array();
     $errors = array("id" => '', "qnty" => '');
+    
+    $sql = "SELECT * FROM receipt";
+    $result = mysqli_query($conn, $sql);
+    $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
     session_start();
     $_SESSION['rnum'] = 1;
+    
     if(isset($_POST['reset'])){
         $sql = "DELETE FROM receipt";
         if(mysqli_query($conn, $sql)){
@@ -24,31 +33,12 @@
             echo "QUERY ERROR : " . mysqli_error($conn);
         }
     }
-    if(isset($_POST['print'])){
-        $total = $_SESSION['total'];
-        //echo $total;
-        $sql = "INSERT INTO orders (Price) VALUES ($total)";
-        //$_SESSION['rnum'] += 1;
-        $total = 0;
-        if(mysqli_query($conn, $sql)){
+    
+    if(isset($_POST['confirm'])){
+        header("Location: receipt.php");
         
-        }else{
-            echo 'QUERY ERROR : '. mysqli_error($conn);
-        }
-        $sql = "DELETE FROM receipt";
-        if(mysqli_query($conn, $sql)){
-            //echo "Resetted";
-            $sql = "ALTER TABLE receipt AUTO_INCREMENT=1";
-            if(mysqli_query($conn, $sql)){
-                //echo "Auto increment resetted.";
-                //header("print.php");
-            }else{
-                echo "QUERY ERROR : " . mysqli_error($conn);
-            }
-        }else{
-            echo "QUERY ERROR : " . mysqli_error($conn);
-        }
     }
+    
     if(isset($_POST['delete'])){
 		$id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 		$sql = "DELETE FROM receipt WHERE Num = $id_to_delete";
@@ -66,6 +56,7 @@
         }
 
 	}
+    
     if(isset($_POST['submit'])){
         if(empty($_POST['id'])){
             $errors['id'] = "*Required";
@@ -175,7 +166,7 @@
         </div>
         <div class="col-lg-8 justify-content-end mt-5" id="bill" style="border-radius:10px;">
             <h2 class="display-5 text-center">RECEIPT</h2>
-            <p>Receipt No : <?php //echo $_SESSION['rnum']; ?></p>
+            <p>Receipt No : <?php echo ($_SESSION['lastid'] ?? 0)+1; ?></p> 
             <p>Date : <?php echo $date; ?> </p>
             <p>Time : <?php echo $time; ?> </p>
             <table class="table table-hover table-bordered table-striped table-dark" style="border-radius:10px;">
@@ -200,21 +191,26 @@
                 </tbody>
             </table>
             <div class="justify-content-end">
-                <table class="table table-borderless">
-                    <tr><td>Total       : </td><td><?php echo htmlspecialchars($total);?></td></tr>
-                    <tr><td>GST         : </td><td>5%</td></tr>
-                    <tr><td>GRAND TOTAL :</td><td><?php echo htmlspecialchars($total*1.05);
-                                                    $_SESSION['total'] = $total*1.05;
-                                                    ?></td></tr>
+                <table class="table table-borderless font-weight-bold " style="border:2px solid black; border-radius:10px">
+                    <tr><td>Total       : </td>
+                        <td class="justify-content-end"><?php echo htmlspecialchars($total); $_SESSION['total'] = $total; ?></td></tr>
                 </table>
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >        
-                <input type="submit" name="reset" value="Reset" class="btn btn-dark">
-                <input type="submit" name="print" value="Print" class="btn btn-success">
+                    <input type="submit" name="reset" value="Reset" class="btn btn-dark">
+                    <input type="submit" name="confirm" value="Confirm" class="btn btn-success">
                 </form>                
             </div>
 
         </div>
         </div>
+    </div>
+    <div class="container-fluid text-center mt-5" style="background-color: rgba(255, 255, 255, 0.5); padding: 20px; position: relative; ">
+            <div class="i-bar" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content:center; margin-bottom: 2em;">
+                <a class="fa fa-facebook " href="#" style="border: none; text-decoration: none;  margin: 0em 1em; color:black; font-size: xx-large;"></a>
+                <a class="fa fa-instagram" href="#" style="border: none; text-decoration: none;  margin: 0em 1em; color:black; font-size: xx-large;"></a>
+                <a class="fa fa-envelope " href="#" style="border: none; text-decoration: none;  margin: 0em 1em; color:black; font-size: xx-large;"></a>
+            </div>
+            <p class="credit" style="font-size: 15px; font-stretch: 2px; text-align: center; color: black;">© FROZEN BOTTLE</p>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
