@@ -17,18 +17,14 @@
     $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
     session_start();
-    $_SESSION['rnum'] = 1;
+    
     
     if(isset($_POST['reset'])){
         $sql = "DELETE FROM receipt";
         if(mysqli_query($conn, $sql)){
+            $_SESSION['sno'] = 0;
             //echo "Resetted";
-            $sql = "ALTER TABLE receipt AUTO_INCREMENT=1";
-            if(mysqli_query($conn, $sql)){
-                //echo "Auto increment resetted.";
-            }else{
-                echo "QUERY ERROR : " . mysqli_error($conn);
-            }
+            $items = array();
         }else{
             echo "QUERY ERROR : " . mysqli_error($conn);
         }
@@ -43,7 +39,7 @@
 		$id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 		$sql = "DELETE FROM receipt WHERE Num = $id_to_delete";
 		if(mysqli_query($conn, $sql)){
-			$sql = "ALTER TABLE receipt AUTO_INCREMENT=$id_to_delete";
+			$_SESSION['sno'] -= 1;
 		} else {
 			echo 'QUERY ERROR : '. mysqli_error($conn);
 		}
@@ -85,8 +81,9 @@
             //print_r($item);
             $title = $item['Title'];
             $price = $item['Price']*$qnty;
-
-            $sql = "INSERT INTO receipt(MenuID, Title, Qnty, Price) VALUES ('$id', '$title', $qnty, $price)";
+            $num = $_SESSION['sno'] ?? 0;
+            $sql = "INSERT INTO receipt VALUES ($num+1 ,'$id', '$title', $qnty, $price)";
+            $_SESSION['sno'] = $num + 1;
             if(mysqli_query($conn, $sql)){
                 $id = $title = $qnty = $price = "";
             } else{
