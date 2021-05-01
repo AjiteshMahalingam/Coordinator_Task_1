@@ -1,0 +1,339 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #d9d9d9;
+    margin: 0px;
+    height: 100%;
+}
+body, html{
+
+    margin: 0;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('../Images/bkimg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;  
+    overflow-x: hidden;
+    position: relative;
+    z-index: -99;
+    font-family: 'Brush Script MT', cursive; 
+
+}
+.header{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    height : auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    margin: 0px;
+    margin-top: 2em;
+    z-index: 999;
+}
+.nav{
+    float: right;
+}
+.nav ul{
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+
+}
+.nav li{
+    display: block;
+    margin: 0 2px;
+    padding: 0 1em;
+}
+.nav ul li a{
+    padding: 2em 0em 1em 0em;
+    margin: 0;
+    font-weight: bold;
+    font-size: larger;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    text-align: center;
+    height:1.2em;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid black;
+}
+.logo{
+    height: 80px;
+    width: auto;
+    float: left;
+    padding-left: 1em;
+}
+.logo img{
+    height: 100%;
+    width: auto;
+}
+h1{
+    text-align:center; 
+    font-weight: bold; 
+    color: white; 
+    padding-bottom: 3px;
+
+}
+h2{
+    text-align:center; 
+    font-weight: bold; 
+    border-bottom: 2px solid white; 
+    color: white; 
+    padding-bottom: 3px;
+}
+.contact ul{
+    list-style: none;
+    color: white;
+}
+.contact a{
+    color: white;
+    padding: 1em;
+    font-size: large;
+    height: 2vh;
+    width: 2vw;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Abt-img Abt-img abt-txt abt-txt"
+      "artist artist artist-img artist-img"
+      "map map contact contact";
+    width: 75%;
+    margin: 0 auto;
+  }
+  
+  .Home { grid-area: Home;
+    margin: 10px;
+    
+}
+
+  .Abt-img { grid-area: Abt-img; text-align: center; 
+    margin: 10px;
+ }
+.Abt-img img { 
+    width: 100%;
+    height: auto;
+    
+}
+  
+  .abt-txt { grid-area: abt-txt; 
+    color: white;
+    padding: 15px;
+    height: auto;
+    margin: 10px;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgba(0,0, 0, 0.7);
+    border-radius: 20px;
+}
+  
+  .artist { grid-area: artist; margin: 10px;
+    color: white;
+    padding: 15px;
+    height: auto;
+    margin: 10px;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgba(0,0, 0, 0.7);
+    border-radius: 20px;
+}
+  
+  .artist-img { grid-area: artist-img; margin: 10px;
+    }
+  .artist-img img { 
+
+    object-fit: contain;
+    
+}
+  .map { grid-area: map; margin: 10px;}
+  
+  .contact { grid-area: contact; margin: 10px;;
+    color: white;
+    padding: 15px;
+    height: auto;
+    margin: 10px;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgba(0,0, 0, 0.7);
+    border-radius: 20px;
+}
+
+  
+
+.footer{
+    width: 100%;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    position: relative;
+    margin: none;
+}
+.credit{
+    font-size: 15px;
+    font-stretch: 4px;
+    text-align: center;
+    color: black;
+}
+.i-bar{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+.i-bar a{
+    border: none;
+    text-decoration: none;
+    margin: 0em 1em;
+    color: black;
+    font-size: x-large;
+}
+
+.container{
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 40%;
+    padding-bottom: 40%;
+
+}
+.slide-img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.slide-img img{
+    width: 100%;
+    height: 100%;
+}
+#i1, #i2, #i3{
+    display: none;
+}
+.pre, .nxt{
+    width: 7%;
+    height: 100%;
+    background-color: rgba(0,0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    cursor: pointer;
+}
+.pre{
+    left: 0;
+}
+.nxt{
+    right: 0;
+}
+.slide-nav{
+    width: 100%;
+    height: 12px;
+    bottom: 12%;
+    position: absolute;
+    z-index: 99;
+    text-align: center;
+}
+.dots{
+    top: -5px;
+    width: 18px;
+    height: 18px;
+    margin: 0 4px;
+    position: relative;
+    border-radius: 50%;
+    display: inline-block;
+    background: rgba(88, 88, 88, 0.7);
+}
+.slide-img{
+    z-index: -1;
+}
+#i1:checked ~ #one,
+#i2:checked ~ #two,
+#i3:checked ~ #three{
+    z-index: 9;
+}
+#i1:checked ~ .slide-nav #dot1,
+#i2:checked ~ .slide-nav #dot2,
+#i3:checked ~ .slide-nav #dot3{
+    background: white;
+}
+
+
+.grid-pics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "p1 p2 p2"
+      "p1 p4 p3"
+      "p5 p5 p3"
+      "p6 p7 p8";
+      width: 75%;
+      margin: 0 auto;
+  }
+  
+  .p1 { grid-area: p1; }
+  
+  .p2 { grid-area: p2; }
+  
+  .p3 { grid-area: p3; }
+  
+  .p4 { grid-area: p4; }
+  
+  .p5 { grid-area: p5; }
+  
+  .p6 { grid-area: p6; }
+  
+  .p7 { grid-area: p7; }
+  
+  .p8 { grid-area: p8; }
+
+.grid-pics img{
+    height:100%;
+    width: 100%;
+}
+.grid-pics div{
+    margin: 15px;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.3), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+.grow div{
+    transition: 1s ease;
+}
+.grow div:hover{
+  -webkit-transform: scale(1.07);
+  -ms-transform: scale(1.07);
+  transform: scale(1.07);
+  transition: 1s ease;
+}
+
+@media(max-width:920px){
+    .grid-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .map{
+        margin: 10px auto;
+    }
+    .artist-img{
+        margin: 10px auto;
+    }
+    .grid-pics{
+        width: 100%;
+    }
+}
+@media(max-width:890px) {
+    .nav{
+        display: block;
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .logo{
+        float: none;
+        text-align: center;
+    }
+}

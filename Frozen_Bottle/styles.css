@@ -1,0 +1,33 @@
+#logo{
+    height: 150px;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    z-index: 9;
+}
+body, html{
+
+    margin: 0;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('Images/wallpaper.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;  
+    overflow-x: hidden;
+    position: relative;
+    z-index: -99;
+    font-family: 'Brush Script MT', cursive; 
+
+}
+#add-to{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 15px 10px;
+    border-right: 2px solid white;
+    border-radius: 10px;
+}
+#bill{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 15px 10px;
+    border-radius: 10px;
+}
